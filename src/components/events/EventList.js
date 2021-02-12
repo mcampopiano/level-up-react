@@ -1,8 +1,10 @@
 import React, { useContext, useEffect } from "react"
-import { EventContext } from "./EventProvider.js"
+import { useHistory } from "react-router-dom"
+import { EventContext } from "./EventProvider"
 
 
 export const EventList = (props) => {
+    const history = useHistory()
     const { events, getEvents } = useContext(EventContext)
 
     useEffect(() => {
@@ -14,6 +16,7 @@ export const EventList = (props) => {
             <header className="events__header">
                 <h1>Level Up Game Events</h1>
             </header>
+            <button onClick={() => history.push("/events/create")}>Add new event</button>
             {
                 events.map(event => {
                     return <section key={event.id} className="registration">
