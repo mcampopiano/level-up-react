@@ -16,9 +16,10 @@ export const ApplicationViews = () => {
             lineHeight: "1.75rem"
         }}>
             <GameProvider>
-                <Route exact path="/">
-                    <GameList />
-                </Route>
+                <Route exact path="/" render={
+                    props => <GameList {...props} /> 
+                } />
+                
             </GameProvider>
             <GameProvider>
                 <EventProvider>
@@ -31,9 +32,12 @@ export const ApplicationViews = () => {
                 </EventProvider>
             </GameProvider>
             <GameProvider>
-                <Route path="/creategames">
-                    <GameForm />
-                </Route>
+                <Route path="/creategames" render={
+                    props => <GameForm {...props} />
+                } />
+                <Route path="/games/:gameId(\d+)/edit" render= {
+                    props => <GameForm {...props} />
+                } />
             </GameProvider>
             <ProfileProvider>
                 <Route exact path="/profile">
